@@ -14,6 +14,17 @@ config/name="Neuro-Sama Project"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MainScene="*res://GameContent/Scenes/scene_controller.tscn"
+SceneController="*res://GameContent/GlobalScripts/scene_controller.gd"
+Utility="*res://GameContent/GlobalScripts/utility.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

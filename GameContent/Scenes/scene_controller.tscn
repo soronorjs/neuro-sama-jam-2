@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://1sqcw7i5nxj4"]
+
+[ext_resource type="Script" path="res://GameContent/GlobalScripts/scene_controller.gd" id="1_2w71h"]
+[ext_resource type="Script" path="res://GameContent/Scripts/Scene_Utility/scene_holder.gd" id="2_kpfqk"]
+[ext_resource type="Shader" uid="uid://brpw62agie0dt" path="res://GameContent/Shaders/Pixelate.tres" id="2_w6bf5"]
+[ext_resource type="AudioStream" uid="uid://vhxcwkbsqpbg" path="res://GameContent/Music/Farmlanddfn.wav" id="3_jspwc"]
+[ext_resource type="Script" path="res://GameContent/GlobalScripts/utility.gd" id="5_kahqk"]
+
+[sub_resource type="Animation" id="Animation_4rg3w"]
+resource_name = "TransitionScreen"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Transition:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jpvrb"]
+_data = {
+"TransitionScreen": SubResource("Animation_4rg3w")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqydc"]
+shader = ExtResource("2_w6bf5")
+
+[node name="SceneController" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_2w71h")
+metadata/Stored_Scenes = []
+metadata/Invincible = false
+
+[node name="MainAudio" type="AudioStreamPlayer" parent="."]
+volume_db = 13.014
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jspwc")
+volume_db = 6.114
+bus = &"Music"
+
+[node name="MainAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jpvrb")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="Transition" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="post-processing" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="post-processing" type="ColorRect" parent="post-processing"]
+visible = false
+material = SubResource("ShaderMaterial_eqydc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SceneHolder" type="Node" parent="."]
+script = ExtResource("2_kpfqk")
+
+[node name="Utility" type="Node" parent="."]
+script = ExtResource("5_kahqk")
+
+[connection signal="child_entered_tree" from="SceneHolder" to="SceneHolder" method="_on_child_entered_tree"]
