@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bueul7w1uj0sb"
-path="res://.godot/imported/Neuro_Idle_Temp.png-42eb598b6b4d7776ed7f7d0528c42651.ctex"
+uid="uid://chw5atjfbettb"
+path="res://.godot/imported/Layer1.png-1e4b030b42e8d831b3ec8e57f8b34c61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GameContent/Sprites/Neuro_Idle_Temp.png"
-dest_files=["res://.godot/imported/Neuro_Idle_Temp.png-42eb598b6b4d7776ed7f7d0528c42651.ctex"]
+source_file="res://GameContent/Sprites/Background/Layer1.png"
+dest_files=["res://.godot/imported/Layer1.png-1e4b030b42e8d831b3ec8e57f8b34c61.ctex"]
 
 [params]
 

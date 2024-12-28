@@ -8,11 +8,13 @@ extends CharacterBody2D
 @onready var player_sprite = $".".get_node("PlayerSprite")
 @onready var animation_player = player.get_node("MainAnimation")
 @onready var animation_control = animation_player.get_node("AnimationRoot")
+@onready var state_machine = animation_control.get("parameters/playback")
 
 
 # Metadata
 @onready var speed = player.get_meta("walk_speed")
 @onready var jump_velocity = player.get_meta("jump_velocity")
+
 
 func _physics_process(delta: float) -> void:
 # Jumping Logic
@@ -32,7 +34,9 @@ func _physics_process(delta: float) -> void:
 # Movement Logic
 	if direction:
 		velocity.x = direction * speed
+		state_machine.travel("End")
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+		state_machine.travel("Idle")
 		
 	move_and_slide()
