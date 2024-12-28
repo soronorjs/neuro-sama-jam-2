@@ -194,6 +194,7 @@ script = ExtResource("1_2iggf")
 metadata/walk_speed = 300.0
 metadata/jump_velocity = -400.0
 metadata/HP = 6
+metadata/Checkpoint = NodePath("")
 
 [node name="Cameras" type="Node" parent="."]
 
