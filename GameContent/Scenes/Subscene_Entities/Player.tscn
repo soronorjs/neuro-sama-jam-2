@@ -195,6 +195,7 @@ metadata/walk_speed = 300.0
 metadata/jump_velocity = -400.0
 metadata/HP = 6
 metadata/Checkpoint = NodePath("")
+metadata/railgun_speed = 2500.0
 
 [node name="Cameras" type="Node" parent="."]
 
@@ -236,3 +237,5 @@ parameters/Idle/TimeScale/scale = 1.0
 
 [node name="HP" type="Node" parent="."]
 script = ExtResource("5_e0gpm")
+
+[node name="BulletHolder" type="Node" parent="."]

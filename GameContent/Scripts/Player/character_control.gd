@@ -14,7 +14,8 @@ extends CharacterBody2D
 # Metadata
 @onready var speed = player.get_meta("walk_speed")
 @onready var jump_velocity = player.get_meta("jump_velocity")
-
+	
+var last_direction = 1
 
 func _physics_process(delta: float) -> void:
 # Jumping Logic
@@ -30,6 +31,9 @@ func _physics_process(delta: float) -> void:
 		
 		
 	var direction = Input.get_axis("ui_left", "ui_right")
+	while direction != 0:
+		last_direction = direction
+		break
 
 # Movement Logic
 	if direction:
@@ -40,3 +44,13 @@ func _physics_process(delta: float) -> void:
 		state_machine.travel("Idle")
 		
 	move_and_slide()
+	
+# Attack
+	if Input.is_action_just_pressed("attack"):
+		var bullet = load("res://GameContent/Scenes/Subscene_Objects/bullet.tscn")
+		var bullet_instance = bullet.instantiate()
+		bullet_instance.position = player.position + Vector2(100*last_direction, 0)
+		bullet_instance.linear_velocity.x = player.get_meta("railgun_speed") * last_direction
+		
+		var bullet_holder = $BulletHolder
+		bullet_holder.add_child(bullet_instance)
