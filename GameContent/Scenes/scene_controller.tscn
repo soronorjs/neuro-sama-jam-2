@@ -1,9 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://1sqcw7i5nxj4"]
+[gd_scene load_steps=6 format=3 uid="uid://cweajfhip5o70"]
 
-[ext_resource type="Script" path="res://GameContent/GlobalScripts/scene_controller.gd" id="1_2w71h"]
 [ext_resource type="Script" path="res://GameContent/Scripts/Scene_Utility/scene_holder.gd" id="2_kpfqk"]
-[ext_resource type="Shader" uid="uid://brpw62agie0dt" path="res://GameContent/Shaders/Pixelate.tres" id="2_w6bf5"]
-[ext_resource type="AudioStream" uid="uid://vhxcwkbsqpbg" path="res://GameContent/Music/Farmlanddfn.wav" id="3_jspwc"]
 [ext_resource type="Script" path="res://GameContent/GlobalScripts/utility.gd" id="5_kahqk"]
 
 [sub_resource type="Animation" id="Animation_4rg3w"]
@@ -40,11 +37,9 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eqydc"]
-shader = ExtResource("2_w6bf5")
 
 [node name="SceneController" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_2w71h")
 metadata/Stored_Scenes = []
 metadata/Invincible = false
 
@@ -52,9 +47,7 @@ metadata/Invincible = false
 volume_db = 13.014
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_jspwc")
 volume_db = 6.114
-bus = &"Music"
 
 [node name="MainAnimation" type="AnimationPlayer" parent="."]
 libraries = {

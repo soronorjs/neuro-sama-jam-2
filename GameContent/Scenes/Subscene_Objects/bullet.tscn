@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddh3fsn4pw44j"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_s87sl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tun07"]
+size = Vector2(64, 6)
+
+[node name="Bullet" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.807963, 0, 0.0204427, 1)
+position = Vector2(22, -2)
+scale = Vector2(64, 6)
+mesh = SubResource("QuadMesh_s87sl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(22, -2)
+shape = SubResource("RectangleShape2D_tun07")

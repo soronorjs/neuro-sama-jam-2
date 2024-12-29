@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0s5qu5h70a75"]
+
+[ext_resource type="Script" path="res://GameContent/Scripts/Entity_Utility/collision.gd" id="1_2mftg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yg0y"]
+size = Vector2(1, 1)
+
+[node name="DamageZone" type="Area2D" groups=["Damagers"]]
+script = ExtResource("1_2mftg")
+metadata/Damage = 20
+metadata/instant_kill = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(100, 50)
+shape = SubResource("RectangleShape2D_5yg0y")
+
+[connection signal="body_entered" from="." to="." method="collision"]

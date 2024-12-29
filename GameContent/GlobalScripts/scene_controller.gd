@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var scene_holder = get_node("/root/SceneManager/SceneHolder")
-@onready var main_audio = get_node("/root/SceneManager/MainAudio")
+@onready var scene_holder = get_node("/root/MainScene/SceneHolder")
+@onready var main_audio = get_node("/root/MainScene/MainAudio")
 @onready var main_volume_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
-@onready var main_animation = SceneManager.get_node("MainAnimation")
+@onready var main_animation = MainScene.get_node("MainAnimation")
 
 @onready var tweenSound = get_tree().create_tween()
 
@@ -12,12 +12,12 @@ extends Node2D
 var scene
 
 func _ready():
-	SceneManager.get_node("CanvasLayer/Transition").visible = true
+	MainScene.get_node("CanvasLayer/Transition").visible = true
 	main_audio.volume_db = 0.0
-	load_scene("res://GameContent/Scenes/UI/main_menu.tscn")
+	load_scene("res://GameContent/Scenes/Levels/test.tscn")
 
 func load_scene(scene_path: String):
-	if not SceneManager.get_node("CanvasLayer/Transition").color == Color.BLACK and not scene_path == "res://GameContent/Scenes/UI/main_menu.tscn":
+	if not MainScene.get_node("CanvasLayer/Transition").color == Color.BLACK and not scene_path == "res://GameContent/Scenes/UI/main_menu.tscn":
 		main_animation.play_backwards("TransitionScreen") 
 	
 	if scene_path == "res://GameContent/Scenes/UI/main_menu.tscn":
@@ -35,13 +35,13 @@ func load_scene(scene_path: String):
 	scene = null
 
 	if "Levels" in scene_path and not "level_picker.tscn" in scene_path:
-		for item in SceneManager.get_meta("Stored_Scenes"):
+		for item in MainScene.get_meta("Stored_Scenes"):
 			var split_path = str(scene_path.split("/")[6].split(".tscn")[0]).to_lower()
 			print("Level to load: ", split_path)
 			var itemName = str(item.get_name()).to_lower()
 			if itemName == split_path:
 				scene = item
-				#SceneManager.get_meta("Stored_Scenes").clear()
+				#MainScene.get_meta("Stored_Scenes").clear()
 		
 	if scene_holder.get_child_count() > 0:
 		for child in scene_holder.get_children():
@@ -68,7 +68,7 @@ func load_scene(scene_path: String):
 		print("Scene Added! ", scene)
 		scene_holder.add_child(scene)
 		
-		#SceneManager.get_meta("Stored_Scenes").erase(scene)
+		#MainScene.get_meta("Stored_Scenes").erase(scene)
 		
 		if scene.get_node("Player"):
 			var scene_cam = scene.get_node("Player/Cameras/MainCam")

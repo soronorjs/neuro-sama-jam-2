@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://o1lwps8k230w"]
+
+[ext_resource type="Script" path="res://GameContent/Scripts/Scene_Utility/scene_loaded.gd" id="1_1lwhi"]
+[ext_resource type="PackedScene" uid="uid://drqn7af1f65gs" path="res://GameContent/Scenes/Subscene_Entities/Player.tscn" id="2_7cmsc"]
+[ext_resource type="Texture2D" uid="uid://mxut27emla8i" path="res://GameContent/Sprites/Background/Layer3.png" id="3_7uoeb"]
+[ext_resource type="Texture2D" uid="uid://b3gtg83xxdsr0" path="res://GameContent/Sprites/Background/Layer2.png" id="4_j1e6c"]
+[ext_resource type="Texture2D" uid="uid://chw5atjfbettb" path="res://GameContent/Sprites/Background/Layer1.png" id="5_nx0o8"]
+[ext_resource type="PackedScene" uid="uid://cs4bye1lkei4h" path="res://GameContent/Scenes/Subscene_Objects/checkpoint.tscn" id="6_qynhm"]
+[ext_resource type="PackedScene" uid="uid://c0s5qu5h70a75" path="res://GameContent/Scenes/Subscene_Objects/damage_zone.tscn" id="7_c8oip"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_15b2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58dog"]
+size = Vector2(0.999567, 1.01695)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7tkw"]
+size = Vector2(183.66, 2.96)
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_1lwhi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -101
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2400.0
+offset_top = -701.0
+offset_right = 481.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.388235, 0.607843, 1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 3
+position = Vector2(-48, -1)
+scale = Vector2(3, 3)
+texture = ExtResource("5_nx0o8")
+region_enabled = true
+region_rect = Rect2(-3804.04, 0, 10128, 360)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-4, 1082)
+scale = Vector2(10150, 1090.75)
+mesh = SubResource("QuadMesh_15b2g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MeshInstance2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D/StaticBody2D"]
+position = Vector2(0.000295566, 0.132936)
+shape = SubResource("RectangleShape2D_58dog")
+
+[node name="Player" parent="." instance=ExtResource("2_7cmsc")]
+position = Vector2(-1, 497)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(18, -110)
+motion_scale = Vector2(0.1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture_repeat = 3
+scale = Vector2(3, 3)
+texture = ExtResource("3_7uoeb")
+region_enabled = true
+region_rect = Rect2(-1391.8, 0, 4788.65, 360)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(21, -85)
+motion_scale = Vector2(0.6, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_repeat = 3
+scale = Vector2(3, 3)
+texture = ExtResource("4_j1e6c")
+region_enabled = true
+region_rect = Rect2(-3642.13, 0, 7761.09, 360)
+
+[node name="Checkpoint" parent="." instance=ExtResource("6_qynhm")]
+position = Vector2(-2, 595)
+
+[node name="DamageZone" parent="." instance=ExtResource("7_c8oip")]
+position = Vector2(-25, 1093)
+metadata/instant_kill = true
+
+[node name="CollisionShape2D" parent="DamageZone" index="0"]
+shape = SubResource("RectangleShape2D_n7tkw")
+
+[editable path="DamageZone"]

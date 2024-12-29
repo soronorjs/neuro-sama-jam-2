@@ -1,0 +1,241 @@
+[gd_scene load_steps=29 format=3 uid="uid://drqn7af1f65gs"]
+
+[ext_resource type="Script" path="res://GameContent/Scripts/Player/character_control.gd" id="1_2iggf"]
+[ext_resource type="Script" path="res://GameContent/Scripts/Player/camera_control.gd" id="2_ub647"]
+[ext_resource type="PackedScene" uid="uid://bryfjgn2r5k5n" path="res://GameContent/Scenes/UI/game_ui.tscn" id="3_qtnsh"]
+[ext_resource type="Texture2D" uid="uid://ca0p37vbjytr8" path="res://GameContent/Sprites/Player/Spritesheet/Neuro_Idle.png" id="4_3p5ve"]
+[ext_resource type="Script" path="res://GameContent/Scripts/Entity_Utility/hp_logic.gd" id="5_e0gpm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh5ee"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rq7x"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp2wo"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuts0"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubt4g"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjeww"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47vu5"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y72n"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lriww"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgt4d"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ckag"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaoqq"]
+atlas = ExtResource("4_3p5ve")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kx2in"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh5ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rq7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp2wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuts0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubt4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjeww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47vu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y72n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lriww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgt4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ckag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaoqq")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc05l"]
+radius = 26.0
+height = 196.0
+
+[sub_resource type="Animation" id="Animation_udnd2"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_hio6n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_htnfq"]
+_data = {
+"Idle": SubResource("Animation_udnd2"),
+"RESET": SubResource("Animation_hio6n")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yocf2"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6lkbk"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_r2rsr"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_yocf2")
+nodes/Animation/position = Vector2(100, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_6lkbk")
+nodes/TimeScale/position = Vector2(260, 100)
+nodes/output/position = Vector2(440, 120)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fnet4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ny3ha"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gatx6"]
+states/Idle/node = SubResource("AnimationNodeBlendTree_r2rsr")
+states/Idle/position = Vector2(382, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_fnet4"), "Idle", "End", SubResource("AnimationNodeStateMachineTransition_ny3ha")]
+graph_offset = Vector2(-269, 8)
+
+[node name="Player" type="CharacterBody2D" groups=["Entity", "Player"]]
+process_mode = 1
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_2iggf")
+metadata/walk_speed = 300.0
+metadata/jump_velocity = -400.0
+metadata/HP = 6
+metadata/Checkpoint = NodePath("")
+metadata/railgun_speed = 2500.0
+
+[node name="Cameras" type="Node" parent="."]
+
+[node name="MainCam" type="Camera2D" parent="Cameras"]
+offset = Vector2(0, -300)
+limit_bottom = 1000
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("2_ub647")
+
+[node name="GameUi" parent="Cameras/MainCam" instance=ExtResource("3_qtnsh")]
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(56, 24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_kx2in")
+animation = &"Idle"
+offset = Vector2(-17.94, -31.955)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_uc05l")
+
+[node name="MainAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_htnfq")
+}
+
+[node name="AnimationRoot" type="AnimationTree" parent="MainAnimation"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_gatx6")
+anim_player = NodePath("..")
+parameters/Idle/TimeScale/scale = 1.0
+
+[node name="MenuControl" type="Node" parent="."]
+
+[node name="HP" type="Node" parent="."]
+script = ExtResource("5_e0gpm")
+
+[node name="BulletHolder" type="Node" parent="."]
